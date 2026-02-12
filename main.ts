@@ -36,11 +36,13 @@ while (ESP8266_IoT.wifiState(false)) {
 OLED.init(128, 64)
 basic.forever(function () {
     while (ESP8266_IoT.smartiotState(false)) {
+        DatosOLED()
         basic.showIcon(IconNames.Heart)
         ESP8266_IoT.connectSmartiot("qokJCxP2vy9pWuTAGYvc", "1")
-        DatosSmartIoT()
         basic.showIcon(IconNames.SmallHeart)
-        DatosOLED()
     }
+    DatosOLED()
+    DatosSmartIoT()
     basic.showIcon(IconNames.Happy)
+    basic.pause(30000)
 })
