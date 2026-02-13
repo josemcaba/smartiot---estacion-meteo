@@ -14,9 +14,10 @@ function DatosOLED () {
     OLED.writeNumNewLine(Environment.octopus_BME280(Environment.BME280_state.BME280_pressure))
 }
 function DatosThingSpeak () {
+    ESP8266_IoT.connectThingSpeak()
     ESP8266_IoT.setData(
-    "your_write_api_key",
-    Environment.ReadLightIntensity(AnalogPin.P0),
+    "UB7P9WBTAV6HAOY0",
+    Environment.ReadLightIntensity(AnalogPin.P1),
     Environment.octopus_BME280(Environment.BME280_state.BME280_temperature_C),
     Environment.octopus_BME280(Environment.BME280_state.BME280_humidity),
     Environment.octopus_BME280(Environment.BME280_state.BME280_pressure)
@@ -31,14 +32,14 @@ while (ESP8266_IoT.wifiState(false)) {
     ESP8266_IoT.connectWifi("DIGIFIBRA-AKHH", "SKtkPPXYRHKs")
 }
 basic.forever(function () {
+    basic.showIcon(IconNames.Confused)
     DatosOLED()
     while (ESP8266_IoT.thingSpeakState(false)) {
-        DatosOLED()
         basic.showIcon(IconNames.Heart)
         ESP8266_IoT.connectThingSpeak()
         basic.showIcon(IconNames.SmallHeart)
     }
     DatosThingSpeak()
     basic.showIcon(IconNames.Happy)
-    basic.pause(30000)
+    basic.pause(60000)
 })
