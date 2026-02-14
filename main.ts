@@ -29,7 +29,7 @@ OLED.clear()
 basic.showIcon(IconNames.Sad)
 ESP8266_IoT.initWIFI(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200)
 while (ESP8266_IoT.wifiState(false)) {
-    ESP8266_IoT.connectWifi("DIGIFIBRA-AKHH", "SKtkPPXYRHKs")
+    ESP8266_IoT.connectWifi("wiot", "a1b2c3d4")
 }
 basic.forever(function () {
     basic.showIcon(IconNames.Confused)
